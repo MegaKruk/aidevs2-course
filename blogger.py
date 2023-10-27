@@ -1,6 +1,5 @@
 from framework.common_lib import *
 from secrets.secrets import GPT35TURBO_API_URL, OPENAI_API_KEY
-import json
 
 
 task_name = "blogger"
