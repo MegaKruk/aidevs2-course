@@ -34,7 +34,7 @@ def authenticate(token):
     return data
 
 
-def answer(answer, token):
+def solve_task(answer, token):
     response = requests.post(
         f"https://zadania.aidevs.pl/answer/{token}",
         headers=headers,

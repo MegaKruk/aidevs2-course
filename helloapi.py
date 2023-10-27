@@ -7,6 +7,6 @@ data = authenticate(token)
 
 extracted_cookie = data["cookie"]
 if extracted_cookie:
-    answer(extracted_cookie, token)
+    solve_task(extracted_cookie, token)
 else:
     print("Cookie not found")

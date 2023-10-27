@@ -29,4 +29,4 @@ print(f"answers: \n{answers}")
 
 ####################################################################
 
-answer(answer=answers, token=token)
+solve_task(answer=answers, token=token)
