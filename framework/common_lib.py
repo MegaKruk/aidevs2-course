@@ -20,12 +20,13 @@ def get_token(task_name):
         print("Error in get_token")
         return None
 
-def authenticate(token):
-    response = requests.get(
-        f"https://zadania.aidevs.pl/task/{token}",
-        headers=headers,
-        verify=False
-    )
+def authenticate(token, question=None):
+    if not question:
+        response = requests.get(f"https://zadania.aidevs.pl/task/{token}",headers=headers,verify=False)
+    else:
+        data = { 'question': question }
+        response = requests.post(f"https://zadania.aidevs.pl/task/{token}",data=data)
+        response.raise_for_status()
     data = response.json()
     if data.get("code") == 0:
         print(f"Response from authenticate: \n{data}")
