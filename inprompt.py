@@ -26,6 +26,20 @@ messages = [
     {"role": "user", "content": f"{task_question}"}
 ]
 
+"""
+gpt-3.5-turbo
+gpt-3.5-turbo-0613
+gpt-3.5-turbo-16k
+gpt-3.5-turbo-16k-0613
+gpt-3.5-turbo-instruct
+gpt-4
+gpt-4-0613
+text-embedding-ada-002
+text-moderation-latest
+whisper
+Dall-E
+"""
+
 payload = {
     "model": "gpt-3.5-turbo",
     "messages": messages
@@ -49,8 +63,6 @@ payload = {
 response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
 answer = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 print(answer)
-
-
 
 ####################################################################
 
