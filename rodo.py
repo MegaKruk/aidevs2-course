@@ -1,4 +1,4 @@
-from framework.common_lib import *
+from framework.aidevs_framework import *
 from secrets.secrets import GPT35TURBO_API_URL, OPENAI_API_KEY
 
 

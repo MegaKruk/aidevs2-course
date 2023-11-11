@@ -1,4 +1,4 @@
-from framework.common_lib import *
+from framework.aidevs_framework import *
 from secrets.secrets import MODERATION_API_ENDPOINT, OPENAI_API_KEY
 
 
