@@ -12,10 +12,10 @@ task = authenticate(token=token, question=question)
 
 QUERY = task["question"]
 COLLECTION_NAME = "task_search_colection"
-# JSON_FILE_PATH = "./archiwum.json"
+# JSON_FILE_PATH = "./data/archiwum.json"
 #
 # documents = read_json_file(JSON_FILE_PATH)
-# create_collection_in_qdrant(COLLECTION_NAME, documents, QDRANT_URL)
+# create_collection_in_qdrant(COLLECTION_NAME, documents, QDRANT_URL, 'info')
 
 headers = {
     "Authorization": f"Bearer {OPENAI_API_KEY}",

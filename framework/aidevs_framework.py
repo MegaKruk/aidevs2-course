@@ -52,7 +52,7 @@ def read_json_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
 
-def create_collection_in_qdrant(collection_name, documents, QDRANT_URL):
+def create_collection_in_qdrant(collection_name, documents, QDRANT_URL, doc_keys):
     # Define the schema of the collection, including the vectors field
     collection_schema = {
         "name": collection_name,
@@ -80,9 +80,18 @@ def create_collection_in_qdrant(collection_name, documents, QDRANT_URL):
             "Authorization": f"Bearer {OPENAI_API_KEY}",
             "Content-Type": "application/json"
         }
+        if isinstance(doc_keys, list):
+            input_text = ""
+            for doc_key in doc_keys:
+                if doc_key in ['imie', 'nazwisko']:
+                    input_text += f"{doc[doc_key]} "
+                else:
+                    input_text += f"\n{doc_key.replace('_', ' ').capitalize()}: {doc[doc_key]}\n"
+        else:
+            input_text = doc[doc_keys]
         payload = {
             "model": "text-embedding-ada-002",
-            "input": f"{doc['info']}"
+            "input": f"{input_text}"
         }
         response = requests.post(ADA_002_API_URL, headers=HEADERS, json=payload)
         vector = [0] * 1536

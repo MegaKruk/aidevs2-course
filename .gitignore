@@ -164,4 +164,5 @@ cython_debug/
 /key.pem
 /sandbox.py
 /mateusz.mp3
-/archiwum.json
+/data/archiwum.json
+/data/people.json
