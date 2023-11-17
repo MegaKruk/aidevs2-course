@@ -6,6 +6,7 @@ from secrets.secrets import my_api_key, ADA_002_API_URL, OPENAI_API_KEY
 
 headers = {"Content-Type": "application/json"}
 
+
 def get_token(task_name):
     response = requests.post(
         f"https://zadania.aidevs.pl/token/{task_name}",
@@ -21,6 +22,7 @@ def get_token(task_name):
     else:
         print("Error in get_token")
         return None
+
 
 def authenticate(token, question=None):
     if not question:
@@ -48,9 +50,21 @@ def solve_task(answer, token):
     print(f"Response from answer: \n{data}")
     return data
 
+
 def read_json_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
+
+
+def download_file(url):
+    local_filename = f"./data/{url.split('/')[-1]}"
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+    return local_filename
+
 
 def create_collection_in_qdrant(collection_name, documents, QDRANT_URL, doc_keys):
     # Define the schema of the collection, including the vectors field
@@ -63,7 +77,6 @@ def create_collection_in_qdrant(collection_name, documents, QDRANT_URL, doc_keys
             "distance": "Cosine"
         }
     }
-
     # Create collection
     response = requests.get(f"{QDRANT_URL}/collections/{collection_name}")
     if response.status_code == 404:
@@ -113,3 +126,4 @@ def create_collection_in_qdrant(collection_name, documents, QDRANT_URL, doc_keys
             raise Exception(f"Error inserting document: {response.json()}")
         print(f"{idx+1} / {len_documents}")
     print(f"Collection '{collection_name}' created and documents inserted.")
+
