@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from my_secrets.my_secrets import GPT35TURBO_API_URL, OPENAI_API_KEY, QDRANT_URL
+from my_secrets.my_secrets import GPT_API_URL, OPENAI_API_KEY, QDRANT_URL
 import datetime
 import ast
 
@@ -49,7 +49,7 @@ payload = {
     "model": "gpt-4",
     "messages": messages
 }
-response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
 intent = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 intent_dict = ast.literal_eval(intent)
 

@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from my_secrets.my_secrets import GPT35TURBO_API_URL, OPENAI_API_KEY
+from my_secrets.my_secrets import GPT_API_URL, OPENAI_API_KEY
 
 
 task_name = "inprompt"
@@ -45,7 +45,7 @@ payload = {
     "messages": messages
 }
 
-response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
 person_name = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
 task_input_filtered = [entry for entry in task_input if person_name in entry]
@@ -60,7 +60,7 @@ payload = {
     "messages": messages
 }
 
-response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
 answer = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 print(answer)
 

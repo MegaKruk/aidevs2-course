@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from my_secrets.my_secrets import GPT35TURBO_API_URL, OPENAI_API_KEY, QDRANT_URL
+from my_secrets.my_secrets import GPT_API_URL, OPENAI_API_KEY, QDRANT_URL
 
 
 task_name = "knowledge"
@@ -29,7 +29,7 @@ payload = {
     "messages": messages
 }
 
-response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
 category = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 print(f"category: {category}")
 answer = []
@@ -51,7 +51,7 @@ if category == "populacja":
         "model": "gpt-4",
         "messages": messages
     }
-    response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+    response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
     answer = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip().replace(" ", "")
 elif category == "waluta":
     url = "http://api.nbp.pl/api/exchangerates/tables/A"
@@ -68,7 +68,7 @@ elif category == "waluta":
         "model": "gpt-3.5-turbo",
         "messages": messages
     }
-    response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+    response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
     answer = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 elif category == "inne":
     messages = [
@@ -80,7 +80,7 @@ elif category == "inne":
         "model": "gpt-3.5-turbo",
         "messages": messages
     }
-    response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+    response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
     answer = response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 else:
     raise Exception(f"Unknown category: {category}")

@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from my_secrets.my_secrets import GPT35TURBO_API_URL, OPENAI_API_KEY
+from my_secrets.my_secrets import GPT_API_URL, OPENAI_API_KEY
 
 
 task_name = "rodo"

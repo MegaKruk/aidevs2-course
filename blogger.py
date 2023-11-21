@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from my_secrets.my_secrets import GPT35TURBO_API_URL, OPENAI_API_KEY
+from my_secrets.my_secrets import GPT_API_URL, OPENAI_API_KEY
 
 
 task_name = "blogger"
@@ -27,7 +27,7 @@ def generate_text(chapter):
         "messages": messages
     }
 
-    response = requests.post(GPT35TURBO_API_URL, headers=HEADERS, json=payload)
+    response = requests.post(GPT_API_URL, headers=HEADERS, json=payload)
     return response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
 def create_blog(chapters):
