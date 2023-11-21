@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from secrets.secrets import MODERATION_API_ENDPOINT, OPENAI_API_KEY
+from my_secrets.my_secrets import MODERATION_API_ENDPOINT, OPENAI_API_KEY
 
 
 task_name = "moderation"

@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from secrets.secrets import GPT35TURBO_API_URL, OPENAI_API_KEY, QDRANT_URL
+from my_secrets.my_secrets import GPT35TURBO_API_URL, OPENAI_API_KEY, QDRANT_URL
 import datetime
 import ast
 
@@ -24,13 +24,8 @@ HEADERS = {
 }
 messages = [{
     "content": [
-        {
-            "text": f"{task_query}. Answer in 1 word ONLY. Example: 'czerwony'", #"answer in polish which colour is hat of gnome? return only colour. if on image wont gnome or hat, return only word error",
-            "type": "text"},
-        {
-            "image_url": task_url,
-            "type": "image_url"
-        }
+        {"text": f"{task_query}. Answer in 1 word ONLY. Example: 'czerwony'", "type": "text"},
+        {"image_url": task_url, "type": "image_url"}
     ],
     "role": "user"
 }]

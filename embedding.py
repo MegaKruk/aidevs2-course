@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from secrets.secrets import ADA_002_API_URL, OPENAI_API_KEY
+from my_secrets.my_secrets import ADA_002_API_URL, OPENAI_API_KEY
 
 
 task_name = "embedding"

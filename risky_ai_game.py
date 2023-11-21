@@ -16,7 +16,6 @@ def aidevs():
     ###################################################
     """
     response = make_response(content)
-    response.headers["ngrok-skip-browser-warning"] = "yes"
     return response
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 from framework.aidevs_framework import *
-from secrets.secrets import OPENAI_API_KEY
+from my_secrets.my_secrets import OPENAI_API_KEY
 import openai
 
 task_name = "whisper"

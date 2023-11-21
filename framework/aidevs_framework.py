@@ -1,7 +1,7 @@
 import requests
 import json
 import uuid
-from secrets.secrets import my_api_key, ADA_002_API_URL, OPENAI_API_KEY
+from my_secrets.my_secrets import my_api_key, ADA_002_API_URL, OPENAI_API_KEY
 
 
 headers = {"Content-Type": "application/json"}
