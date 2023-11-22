@@ -152,3 +152,29 @@ def generate_meme(meme_text, meme_image_url):
     else:
         # Handle errors
         return f"Error: {response.status_code} - {response.text}"
+
+
+def load_json_from_url(url):
+    try:
+        response = requests.get(url)
+
+        # Check if the response status code is 200 (OK)
+        if response.status_code == 200:
+            return response.json()  # Parse JSON from response
+        else:
+            print(f"Failed to retrieve data: {response.status_code}")
+            return None
+    except requests.RequestException as e:
+        print(f"Error during requests to {url} : {str(e)}")
+        return None
+
+
+def compress_data(data):
+    compressed_data = {}
+    for person, info_list in data.items():
+        compressed_info = []
+        for info in info_list:
+            # Removing unnecessary characters and using abbreviations
+            compressed_info.append(info.replace('. ', '.').replace(', ', ',').replace("\t", "").replace("\n", ""))
+        compressed_data[person] = compressed_info
+    return compressed_data
