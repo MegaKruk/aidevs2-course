@@ -1,7 +1,7 @@
 import requests
 import json
 import uuid
-from my_secrets.my_secrets import my_api_key, ADA_002_API_URL, OPENAI_API_KEY
+from my_secrets.my_secrets import my_api_key, ADA_002_API_URL, OPENAI_API_KEY, template_id, RENDERFORM_API_KEY
 
 
 headers = {"Content-Type": "application/json"}
@@ -127,3 +127,28 @@ def create_collection_in_qdrant(collection_name, documents, QDRANT_URL, doc_keys
         print(f"{idx+1} / {len_documents}")
     print(f"Collection '{collection_name}' created and documents inserted.")
 
+
+def generate_meme(meme_text, meme_image_url):
+    url = "https://api.renderform.io/api/v2/render"
+
+    headers = {
+        "x-api-key": RENDERFORM_API_KEY,
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "template": template_id,
+        "data": {
+            "meme-text.text": meme_text,
+            "meme-image.src": meme_image_url
+        }
+    }
+
+    response = requests.post(url, json=data, headers=headers)
+
+    if response.status_code == 200:
+        # Assuming the response contains a JSON payload with the image URL
+        return response.json()
+    else:
+        # Handle errors
+        return f"Error: {response.status_code} - {response.text}"
