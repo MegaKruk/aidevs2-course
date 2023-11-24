@@ -1,10 +1,7 @@
 from framework.aidevs_framework import *
-from my_secrets.my_secrets import GPT_API_URL, OPENAI_API_KEY, QDRANT_URL
-import datetime
-import ast
 
 
-task_name = "ownapipro" #"ownapi"
+task_name = "google"
 question = None
 
 token = get_token(task_name=task_name)
